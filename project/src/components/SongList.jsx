@@ -1,65 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import AudioPlayer from './AudioPlayer';
+import React from 'react';
 
-const SongList = () => {
-  const [songs, setSongs] = useState([]);
-  const [selectedSong, setSelectedSong] = useState(null);
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/songs') // Update with your backend URL
-      .then(response => {
-        setSongs(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching songs:', error);
-      });
-  }, []);
-
-  const handleSelectSong = (song) => {
-    setSelectedSong(song);
-  };
-
+const MediaCard = ({ id, title, artist, albumArt, audioUrl }) => {
   return (
-    <div className="flex flex-wrap gap-6 justify-center p-4">
-      <div className="w-full text-center mb-6">
-        <h2 className="text-2xl font-bold">Song List</h2>
+    <div className="group">
+      <div className="relative overflow-hidden rounded-lg aspect-square mb-2">
+        <img
+          src={albumArt || '/default-cover.jpg'}
+          alt={title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+        />
+        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <button className="bg-green-500 text-white p-3 rounded-full hover:bg-green-600">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </button>
+        </div>
       </div>
-
-      {/* Displaying the list of songs */}
-      {songs.map(song => (
-        <div
-          key={song.id}
-          className="cursor-pointer w-full sm:w-1/3 md:w-1/4 lg:w-1/5 flex justify-center"
-          onClick={() => handleSelectSong(song)} // Set song when clicked
-        >
-          <div className="w-full">
-            <img
-              src={song.coverImageUrl}
-              alt={song.title}
-              className="w-full h-64 object-cover rounded-lg"
-            />
-            <div className="text-center mt-2">
-              <h3 className="text-lg font-semibold">{song.title}</h3>
-              <p className="text-sm text-gray-500">{song.artist}</p>
-            </div>
-          </div>
-        </div>
-      ))}
-
-      {/* Display Audio Player for the selected song */}
-      {selectedSong && (
-        <div className="w-full flex justify-center mt-6">
-          <AudioPlayer
-            title={selectedSong.title}
-            artist={selectedSong.artist}
-            audioUrl={`https://docs.google.com/uc?export=download&id=1U06KsNV6SmFWQIm1cj2qZovFE603pDiJ`} // Google Drive link
-            coverImage={selectedSong.coverImageUrl}
-          />
-        </div>
-      )}
+      <h3 className="font-medium truncate">{title}</h3>
+      <p className="text-sm text-gray-500 truncate">{artist}</p>
     </div>
   );
 };
 
-export default SongList;
+export default MediaCard;

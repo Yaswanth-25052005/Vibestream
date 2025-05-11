@@ -1,28 +1,31 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useRoutes } from 'react-router-dom';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import LikedPage from './pages/LikedPage';
 import Profile from './pages/Profile';
-import NowPlaying from './pages/NowPlaying';
+import NowPlayingWrapper from './pages/NowPlayingWrapper';
+import LoginPage from './pages/LoginPage';
 import { MusicProvider } from './context/MusicContext';
 import { mockUser, mockCurrentTrack } from './data/mockData';
-
 
 function AppRoutes({ user, currentTrack, setCurrentTrack, isPlaying, setIsPlaying }) {
   const routes = useRoutes([
     {
       path: '/',
+      element: <LoginPage />,
+    },
+    {
+      path: '/home',
       element: <Layout><HomePage /></Layout>,
     },
     {
       path: '/liked',
       element: <Layout><LikedPage /></Layout>,
     },
-   
     {
       path: '/profile',
-      element: (
+      element: ( 
         <Layout>
           <Profile
             user={user}
@@ -36,11 +39,7 @@ function AppRoutes({ user, currentTrack, setCurrentTrack, isPlaying, setIsPlayin
       path: '/now-playing',
       element: (
         <Layout>
-          <NowPlaying
-            currentTrack={currentTrack}
-            isPlaying={isPlaying}
-            setIsPlaying={setIsPlaying}
-          />
+          <NowPlayingWrapper />
         </Layout>
       ),
     },

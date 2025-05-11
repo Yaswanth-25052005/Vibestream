@@ -73,7 +73,8 @@ function Profile({ user, setCurrentTrack, setIsPlaying }) {
                   onClick={() => playTrack(track)}
                   className="absolute bottom-3 right-3 p-2 rounded-full bg-indigo-600 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   aria-label={`Play ${track.title}`}
-                >
+                > 
+
                   <Play size={16} />
                 </button>
               </div>

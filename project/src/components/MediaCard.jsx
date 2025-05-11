@@ -1,51 +1,46 @@
 import React from 'react';
-import { Play, Headphones, Disc, User } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-const MediaCard = ({
-  id,
-  title,
-  subtitle,
-  imageUrl,
-  type,
-  roundImage = false
-}) => {
-  const getIcon = () => {
-    switch (type) {
-      case 'playlist':
-        return <Headphones className="w-5 h-5" />;
-      case 'artist':
-        return <User className="w-5 h-5" />;
-      case 'album':
-        return <Disc className="w-5 h-5" />;
-      default:
-        return null;
+const MediaCard = ({ id, title, subtitle, imageUrl, audioUrl, type }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (audioUrl) {
+      navigate('/now-playing', {
+        state: {
+          id,
+          title,
+          artist: subtitle,
+          audioUrl,
+          pictureUrl: imageUrl
+        }
+      });
     }
   };
 
   return (
-    <div className="bg-[#1A1A1A] rounded-md overflow-hidden group hover:bg-[#282828] transition-colors duration-300 cursor-pointer">
-      <div className="relative">
-        <div className={`aspect-square overflow-hidden ${roundImage ? 'p-4' : ''}`}>
-          <img 
-            src={imageUrl} 
-            alt={title} 
-            className={`w-full h-full object-cover ${roundImage ? 'rounded-full' : ''}`}
-          />
-        </div>
-        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-          <button className="bg-[#1DB954] rounded-full p-3 transform scale-90 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 shadow-lg">
-            <Play className="w-6 h-6 text-black" fill="black" />
-          </button>
-        </div>
+    <div 
+      className="group cursor-pointer transition-transform hover:scale-105"
+      onClick={handleClick}
+    >
+      <div className="relative overflow-hidden rounded-lg aspect-square mb-2">
+        <img
+          src={imageUrl || '/default-cover.jpg'}
+          alt={title}
+          className="w-full h-full object-cover group-hover:brightness-75 transition-all"
+        />
+        {audioUrl && (
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+            <button className="bg-green-500 text-white p-3 rounded-full hover:bg-green-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
-      <div className="p-4">
-        <div className="flex items-center gap-2 mb-2">
-          {getIcon()}
-          <span className="text-xs uppercase text-neutral-400">{type}</span>
-        </div>
-        <h3 className="font-semibold text-sm mb-1 truncate">{title}</h3>
-        {subtitle && <p className="text-xs text-neutral-400">{subtitle}</p>}
-      </div>
+      <h3 className="font-medium truncate">{title}</h3>
+      <p className="text-sm text-gray-500 truncate">{subtitle}</p>
     </div>
   );
 };

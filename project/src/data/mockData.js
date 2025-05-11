@@ -1,58 +1,55 @@
+
 export const mockTracks = [
   {
-    id: '1',
-    title: 'Blinding Lights',
-    artist: 'The Weeknd',
-    album: 'After Hours',
-    albumArt: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=600',
-    duration: 203,
-    upNext: []
+  id: 1,
+  title: "Jagadeka Veerudu Athiloka Sundari",
+  artist: "S.P.BalaSubramanyam",
+  albumArt: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/medium/jagadeka-veerudu-atiloka-sundari-et00443912-1745927725.jpg",
+  audioUrl: "https://docs.google.com/uc?export=download&id= 10Kig6Sz-hw3_8iKS8vhmb5pLecCUc2sV",
   },
   {
     id: '2',
-    title: 'Starboy',
-    artist: 'The Weeknd',
-    album: 'Starboy',
-    albumArt: 'https://images.pexels.com/photos/167092/pexels-photo-167092.jpeg?auto=compress&cs=tinysrgb&w=600',
-    duration: 230,
-    upNext: []
+    title: 'Vikram',
+    artist: 'Anirudh RaviChandran',
+    albumArt: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG_4DuNSmYs7fdFTTDdE1TZYwoMYk-RLuNjw&s',
+    audioUrl: "https://docs.google.com/uc?export=download&id=13I8kek6RJNW9sHVc6weIyFHUteZGsEWW",
+
   },
-  {
+
+
+ {
     id: '3',
-    title: 'Save Your Tears',
-    artist: 'The Weeknd',
-    album: 'After Hours',
-    albumArt: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=600',
-    duration: 215,
-    upNext: []
+    title: 'Aawara',
+    artist: 'Anirudh RaviChandran',
+    albumArt: 'https://m.media-amazon.com/images/S/pv-target-images/bf6d4591b6715081bcec0715af4c7d9e26acbadddab406e8f2db255891b1eb2c.jpg',
+    audioUrl: "https://docs.google.com/uc?export=download&id= 1U06KsNV6SmFWQIm1cj2qZovFE603pDiJ",
+
   },
-  {
+ {
     id: '4',
-    title: 'Dynamite',
-    artist: 'BTS',
-    album: 'BE',
-    albumArt: 'https://images.pexels.com/photos/1994818/pexels-photo-1994818.jpeg?auto=compress&cs=tinysrgb&w=600',
-    duration: 199,
-    upNext: []
+    title: 'Thug Life',
+    artist: 'A.R.Rahman',
+    albumArt: 'https://upload.wikimedia.org/wikipedia/en/9/95/Thug_Life_2025.jpg',
+    audioUrl: "https://docs.google.com/uc?export=download&id= 1vyGNdJcHPQjU5KpMGQJxnwLyCNF3mTxj",
+
   },
-  {
+ {
     id: '5',
-    title: 'Butter',
-    artist: 'BTS',
-    album: 'Butter',
-    albumArt: 'https://images.pexels.com/photos/3756766/pexels-photo-3756766.jpeg?auto=compress&cs=tinysrgb&w=600',
-    duration: 188,
-    upNext: []
+    title: 'Kingdom',
+    artist: 'Anirudh RaviChandran',
+    albumArt: 'https://m.media-amazon.com/images/M/MV5BNTk2NGJmMTAtNWFmYS00NGU5LWJiYTgtYzBhNzYzMTc0NzdhXkEyXkFqcGc@._V1_.jpg',
+    audioUrl: " https://docs.google.com/uc?export=download&id= 1c0PHf1rjHkyPxhOpKrAdhkS63TeWqPjP",
+
   },
   {
     id: '6',
-    title: 'Bad Guy',
-    artist: 'Billie Eilish',
-    album: 'When We All Fall Asleep, Where Do We Go?',
-    albumArt: 'https://images.pexels.com/photos/1699161/pexels-photo-1699161.jpeg?auto=compress&cs=tinysrgb&w=600',
-    duration: 194,
-    upNext: []
-  }
+    title: 'Retro',
+    artist: 'Santosh Narayanan',
+    albumArt: 'https://in.bmscdn.com/events/moviecard/ET00426563.jpg',
+    audioUrl: "https://docs.google.com/uc?export=download&id= 1PTfKwotgjOiRSSprVjr22jZhIPBOPXPl",
+
+  },
+
 ];
 
 mockTracks[0].upNext = mockTracks.slice(1, 4);
@@ -128,5 +125,7 @@ export const mockUser = {
     }
   ]
 };
+
+export const playlists = mockUser.playlists;
 
 export const mockCurrentTrack = mockTracks[0];
